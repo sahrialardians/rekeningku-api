@@ -9,7 +9,7 @@ import (
 	"github.com/sahrialardians/rekeningku/internal/utils"
 )
 
-func NewRouter(authHandler *handlers.AuthHandler, userHandler *handlers.UserHandler, accountHandler *handlers.AccountHandler) *gin.Engine {
+func NewRouter(authHandler *handlers.AuthHandler, userHandler *handlers.UserHandler) *gin.Engine {
 	routes := gin.Default()
 
 	routes.GET("/", func(context *gin.Context) {
