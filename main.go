@@ -26,17 +26,20 @@ func main() {
 
 	//Init Repository
 	userRepo := repositories.NewUserRepositoryImpl(db)
+	accountRepo := repositories.NewAccountRepositoryImpl(db)
 
 	//Init Service
 	userService := services.NewUserServiceImpl(userRepo)
 	authService := services.NewAuthServiceImpl(userRepo)
+	accountService := services.NewAccountServiceImpl(accountRepo)
 
 	//Init controller
 	userHandler := handlers.NewUserHandler(userService)
 	authHandler := handlers.NewAuthHandler(authService)
+	accountHandler := handlers.NewAccountHandler(accountService)
 
 	//Router
-	routes := routes.NewRouter(authHandler, userHandler)
+	routes := routes.NewRouter(authHandler, userHandler, accountHandler)
 
 	server := &http.Server{
 		Addr:           ":9001",
